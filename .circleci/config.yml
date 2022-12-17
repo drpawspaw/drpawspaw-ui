@@ -3,7 +3,7 @@ version: 2
 jobs:
   build_deploy:
     docker:
-      - image: vitiya99/drpawspaw-ui:1.0.1
+      - image: vitiya99/drpawspaw-ui:1.1.0
     steps:
       - checkout
       - restore_cache:
