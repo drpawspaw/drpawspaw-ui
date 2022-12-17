@@ -1,0 +1,34 @@
+version: 2
+
+jobs:
+  build_deploy:
+    docker:
+      - image: vitiya99/drpawspaw-ui:1.0.0
+    steps:
+      - checkout
+      - restore_cache
+          keys:
+            - yarn-v1-{{ checksum "yarn.lock" }}
+            - yarn-v1-
+      - run:
+          name: install dependencies
+          command: |
+            yarn cache dir
+            yarn install
+            yarn add firebase-tools
+            yarn run firebase --version
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn/v1
+      - run:
+          name: build with `yarn build`
+          command: |
+            yarn build
+      - run:
+          name: deploy to firebase
+          command: |
+            if [ "$CIRCLE_BRANCH" === "develop" ]; then
+              yarn run firebase use drpawspaw-ui
+              yarn run firebase deploy --token=$FIREBASE_TOKEN
+            fi
