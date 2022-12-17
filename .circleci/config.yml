@@ -6,7 +6,7 @@ jobs:
       - image: vitiya99/drpawspaw-ui:1.0.0
     steps:
       - checkout
-      - restore_cache
+      - restore_cache:
           keys:
             - yarn-v1-{{ checksum "yarn.lock" }}
             - yarn-v1-
@@ -32,3 +32,10 @@ jobs:
               yarn run firebase use drpawspaw-ui
               yarn run firebase deploy --token=$FIREBASE_TOKEN
             fi
+
+workflows:
+  version: 2
+  devstory-deployment:
+    jobs:
+      - build_deploy
+
