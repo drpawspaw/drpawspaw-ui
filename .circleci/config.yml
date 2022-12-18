@@ -11,7 +11,7 @@ jobs:
             - yarn-v1-{{ checksum "yarn.lock" }}
             - yarn-v1-
       - run:
-          name: install dependencies
+          name: Install project dependencies
           command: |
             yarn cache dir
             yarn install
@@ -22,11 +22,11 @@ jobs:
           paths:
             - ~/.cache/yarn/v1
       - run:
-          name: build with `yarn build`
+          name: Build project with `yarn build`
           command: |
             yarn build
       - run:
-          name: deploy to firebase
+          name: Deploy to Firebase
           command: |
             if [ "$CIRCLE_BRANCH" = "develop" ]; then
               yarn run firebase use drpawspaw-ui

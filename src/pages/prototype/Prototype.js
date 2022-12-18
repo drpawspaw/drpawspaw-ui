@@ -12,6 +12,7 @@ const Prototype = () => {
         </div>
       )}
       <iframe
+        title="Drpawspaw prototype"
         className="prototype-iframe"
         width="800"
         height="450"
