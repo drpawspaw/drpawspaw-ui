@@ -1,0 +1,13 @@
+.prototype {
+    &-iframe {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    &-loading {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    }
+}
