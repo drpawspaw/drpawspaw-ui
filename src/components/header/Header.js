@@ -5,7 +5,7 @@ import "./Header.scss";
 
 const Header = () => {
   const [greeting, setGreeting] = useState("Good Morning");
-  const [visibleLogin, setLoginVisible] = useState(true);
+  const [visibleLogin, setLoginVisible] = useState(false);
 
   const handleVisible = () => {
     setLoginVisible(!visibleLogin);
@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <>
       <Navbar
-        variant="sticky"
+        variant="static"
         isBordered
         className="header d-flex align-items-center justify-content-between w-100"
       >
