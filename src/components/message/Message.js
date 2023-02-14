@@ -14,7 +14,7 @@ const Message = ({ content, sender }) => {
       }
     >
       <Avatar
-        size="lg"
+        size="md"
         src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
         color={isBot ? "primary" : "success"}
         bordered
@@ -22,8 +22,8 @@ const Message = ({ content, sender }) => {
       <Text
         className={
           isBot
-            ? "chat-message-content h-100 d-flex align-items-center mb-0 ms-3"
-            : "chat-message-content h-100 d-flex align-items-center mb-0 me-3"
+            ? "chat-message-content h-100 d-flex align-items-center mb-0 ms-2"
+            : "chat-message-content h-100 d-flex align-items-center mb-0 me-2"
         }
       >
         {content}

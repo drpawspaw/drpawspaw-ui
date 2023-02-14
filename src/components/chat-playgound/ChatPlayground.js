@@ -24,15 +24,17 @@ const ChatPlayground = () => {
   };
 
   const handleOnClick = (e) => {
-    setMessageHistory([
-      ...messageHistory,
-      {
-        timestamp: "",
-        content: question ?? "",
-        sender: USER,
-      },
-    ]);
-    handleResetText();
+    if (question !== "" && question) {
+      setMessageHistory([
+        ...messageHistory,
+        {
+          timestamp: "",
+          content: question ?? "",
+          sender: USER,
+        },
+      ]);
+      handleResetText();
+    }
   };
 
   const handleResetText = () => {
@@ -52,7 +54,11 @@ const ChatPlayground = () => {
     <div className="chat-playground d-flex h-100 flex-column align-items-center justify-content-center">
       <div className="chat-playground-messages">
         {messageHistory?.map((con, idx) => (
-          <Message key={idx} content={con?.content ?? ""} sender={con?.sender ?? BOT} />
+          <Message
+            key={idx}
+            content={con?.content ?? ""}
+            sender={con?.sender ?? BOT}
+          />
         ))}
         <div ref={bottomRef} />
       </div>

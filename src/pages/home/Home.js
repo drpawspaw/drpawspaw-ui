@@ -2,7 +2,7 @@ import ChatPlayground from "../../components/chat-playgound/ChatPlayground";
 import "./Home.scss";
 
 const Home = () => {
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <div className="home container-fluid d-flex h-100">
