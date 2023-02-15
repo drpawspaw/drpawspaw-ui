@@ -1,1 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+
+.app {    
+    &-preview {
+        min-height: calc(100vh - 2em) !important;
+    }
+}

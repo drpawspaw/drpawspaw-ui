@@ -1,0 +1,30 @@
+.upcoming-vaccine {
+    min-height: 3em;
+    max-height: 3em;
+    margin: .4em 0;
+
+    p {
+        margin: 0 !important;
+    }
+
+    &-date {
+        background-color: #D9D9D9;
+        min-width: 3em !important;
+        max-width: 3em !important;
+        border-radius: 50% !important;
+
+        p:nth-child(1) {
+            font-weight: 600;
+        }
+    }
+
+    &-content {
+        background-color: #D9D9D9;
+        border-radius: 1em;
+        padding: 0 .8em !important;
+
+        p:nth-child(1) {
+            font-weight: 600;
+        }
+    }
+}
