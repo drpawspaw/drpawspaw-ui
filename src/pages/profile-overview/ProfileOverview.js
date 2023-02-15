@@ -10,7 +10,6 @@ const ProfileOverview = ({ details }) => {
   const [vaccines, setVaccines] = useState([]);
 
   useEffect(() => {
-    console.log(currentUserDetails);
     setVaccines(details?.upcomingVaccines)
   }, [details]);
 
