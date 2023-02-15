@@ -1,8 +1,9 @@
 import { Avatar, Text } from "@nextui-org/react";
-import { BOT } from "../../constants";
+import { BOT, BOT_IMAGE_URL } from "../../constants";
+import { currentUserDetails } from "../../mock-data/MockData";
 import "./Message.scss";
 
-const Message = ({ content, sender }) => {
+const Message = ({ content, sender, userImage }) => {
   const isBot = sender === BOT;
 
   return (
@@ -15,7 +16,7 @@ const Message = ({ content, sender }) => {
     >
       <Avatar
         size="md"
-        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+        src={isBot ? BOT_IMAGE_URL : userImage}
         color={isBot ? "primary" : "success"}
         bordered
       />

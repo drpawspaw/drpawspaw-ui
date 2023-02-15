@@ -7,7 +7,7 @@ import { conversations } from "../../mock-data/MockData";
 import { BOT, USER } from "../../constants";
 import "./ChatPlayground.scss";
 
-const ChatPlayground = () => {
+const ChatPlayground = ({ userImage }) => {
   const [messageHistory, setMessageHistory] = useState([]);
   const [question, setQuestion] = useState("");
   const bottomRef = useRef(null);
@@ -58,6 +58,7 @@ const ChatPlayground = () => {
             key={idx}
             content={con?.content ?? ""}
             sender={con?.sender ?? BOT}
+            userImage={userImage}
           />
         ))}
         <div ref={bottomRef} />
