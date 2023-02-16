@@ -3,17 +3,17 @@
   "name": "DRPAWSPAW - Animal disease prediction chatbot application",
   "icons": [
     {
-      "src": "drpawpaw-64.ico",
+      "src": "drpawspaw-64.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "drpawpaw-192.png",
+      "src": "drpawspaw-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "drpawpaw-512.png",
+      "src": "drpawspaw-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

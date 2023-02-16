@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ChatPlayground from "../../components/chat-playgound/ChatPlayground";
+import ProfileOverview from "../../components/profile-overview/ProfileOverview";
 import { currentUserDetails } from "../../mock-data/MockData";
-import ProfileOverview from "../profile-overview/ProfileOverview";
 import "./Home.scss";
 
 const Home = () => {

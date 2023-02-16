@@ -1,0 +1,51 @@
+.manage-screen {
+  &-pets {
+    &-item {
+      min-height: 20em;
+      border-radius: 1em;
+      padding: 1em;
+      background-color: #d9d9d9;
+
+      &-control {
+        &-button {
+          min-width: 4em;
+          min-height: 4em;
+          border-radius: 50%;
+        }
+
+        &-icon {
+          font-size: 20px;
+        }
+      }
+
+      &-input {
+        color: black;
+        border: 1px solid;
+      }
+
+      //   manage-screen-pets-item-input
+
+      &-action {
+        &-left {
+          min-width: 50% !important;
+          max-width: 50% !important;
+
+          div {
+            min-width: 48%;
+          }
+        }
+
+        &-right {
+          min-width: 50% !important;
+          max-width: 50% !important;
+
+          div {
+            button {
+              min-width: 48%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.profile-screen {
+  min-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+  max-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+
+  &-details {
+    background-color: #e7e7e7;
+    border-radius: 1em 0 0 1em;
+    border-right: 2px solid #f8f8f8;
+
+    &-inputs {
+      width: 100% !important;
+
+      div {
+        min-width: 90%;
+        display: flex;
+        justify-content: center;
+
+        button {
+          min-width: 90%;
+        }
+      }
+
+      &-field {
+        border: 1px solid;
+        color: black;
+      }
+
+      &-dropdown {
+        font-size: 12px !important;
+
+        &-button {
+          border: 1px solid;
+          background-color: transparent;
+          color: black;
+
+          :focus {
+            color: unset;
+          }
+        }
+      }
+    }
+
+    &-action {
+      min-width: 100% !important;
+      max-width: 100% !important;
+
+      button {
+        min-width: 45% !important;
+      }
+    }
+  }
+
+  &-pets {
+    min-height: 100%;
+    overflow-y: scroll;
+    background-color: #e7e7e7;
+    border-radius: 0 1em 1em 0;
+  }
+}
