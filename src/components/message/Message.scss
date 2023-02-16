@@ -8,5 +8,9 @@
         max-width: 80% !important;
         padding: .5em 1em;
         font-size: 12px;
+
+        &-loading {
+            padding: .5em 0;
+        }
     }
 }

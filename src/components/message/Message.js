@@ -1,5 +1,5 @@
-import { Avatar, Text } from "@nextui-org/react";
-import { BOT, BOT_IMAGE_URL } from "../../constants";
+import { Avatar, Loading, Text } from "@nextui-org/react";
+import { BOT, BOT_IMAGE_URL, MESSAGE_LOADING } from "../../constants";
 import { currentUserDetails } from "../../mock-data/MockData";
 import "./Message.scss";
 
@@ -27,7 +27,11 @@ const Message = ({ content, sender, userImage }) => {
             : "chat-message-content h-100 d-flex align-items-center mb-0 me-2"
         }
       >
-        {content}
+        {content === MESSAGE_LOADING ? (
+          <Loading className="chat-message-content-loading" type="points-opacity" />
+        ) : (
+          content
+        )}
       </Text>
     </div>
   );
