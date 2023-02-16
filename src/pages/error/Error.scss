@@ -1,0 +1,9 @@
+.custom-error {
+  min-height: calc(100vh - var(--nextui--navbarHeight)) !important;
+  max-height: calc(100vh - var(--nextui--navbarHeight)) !important;
+
+  &-img {
+    max-height: 55% !important;
+    min-height: 55% !important;
+  }
+}

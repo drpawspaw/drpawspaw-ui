@@ -4,12 +4,13 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Input } from "@nextui-org/react";
 import { conversations } from "../../mock-data/MockData";
-import { BOT, USER } from "../../constants";
+import { BOT, MESSAGE_LOADING, USER } from "../../constants";
 import "./ChatPlayground.scss";
 
 const ChatPlayground = ({ userImage }) => {
   const [messageHistory, setMessageHistory] = useState([]);
   const [question, setQuestion] = useState("");
+  const [isBotTurn, setIsBotTurn] = useState(false)
   const bottomRef = useRef(null);
 
   const handleTextOnChange = (e) => {
@@ -32,7 +33,13 @@ const ChatPlayground = ({ userImage }) => {
           content: question ?? "",
           sender: USER,
         },
+        {
+          timestamp: "",
+          content: MESSAGE_LOADING,
+          sender: BOT,
+        },
       ]);
+      setIsBotTurn(true)
       handleResetText();
     }
   };
@@ -40,6 +47,21 @@ const ChatPlayground = ({ userImage }) => {
   const handleResetText = () => {
     setQuestion("");
   };
+
+  const handleBotReply = () => {
+    setTimeout(() => {
+      const messageHistoryCopy = [...messageHistory]
+      messageHistoryCopy[messageHistoryCopy.length-1].content = "Message recieved from backend!"
+      setMessageHistory([...messageHistoryCopy])
+      setIsBotTurn(false)
+    }, 3000);
+  }
+
+  useEffect(() => {
+    if (messageHistory.length !== 0 && isBotTurn) {
+      handleBotReply()
+    }
+  }, [messageHistory])
 
   useEffect(() => {
     // TODO : Fetch the details from the local storage or session storage later
