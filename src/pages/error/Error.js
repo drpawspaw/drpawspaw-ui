@@ -1,4 +1,4 @@
-import { Button, Image, Text } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import React from "react";
 import { NOT_FOUND, NOT_FOUND_IMAGE_URL, UNAUTHORISED, UNAUTHORISED_IMAGE_URL } from "../../constants";
 import "./Error.scss";

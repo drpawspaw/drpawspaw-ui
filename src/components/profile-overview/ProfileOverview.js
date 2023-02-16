@@ -2,7 +2,6 @@ import { Avatar, Button, Text } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import UpcomingVaccine from "../../components/upcoming-vaccine/UpcomingVaccine";
 import { CAT_IMAGE_URL, DOG, DOG_IMG_URL } from "../../constants";
-import { currentUserDetails } from "../../mock-data/MockData";
 import { truncate } from "../../utils/CommonUtils";
 import "./ProfileOverview.scss";
 
@@ -62,7 +61,7 @@ const ProfileOverview = ({ details }) => {
         )}
       </div>
       <div className="profile-overview-controls d-flex flex-column w-100 justify-content-between">
-        <Button shadow color="primary" auto>
+        <Button shadow onClick={e => window.location.href = "/profile"} color="primary" auto>
           Edit Profile
         </Button>
         <Button shadow color="error" auto>

@@ -5,6 +5,7 @@ import "./App.scss";
 import Header from "./components/header/Header";
 import Error from "./pages/error/Error";
 import { NOT_FOUND, UNAUTHORISED } from "./constants";
+import Profile from "./pages/profile/Profile";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/prototype" element={<Prototype />} />
             <Route path="/unauthorized" element={<Error error={UNAUTHORISED} />} />
             <Route path="*" element={<Error error={NOT_FOUND} />} />

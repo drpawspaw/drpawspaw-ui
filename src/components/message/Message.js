@@ -1,6 +1,5 @@
 import { Avatar, Loading, Text } from "@nextui-org/react";
 import { BOT, BOT_IMAGE_URL, MESSAGE_LOADING } from "../../constants";
-import { currentUserDetails } from "../../mock-data/MockData";
 import "./Message.scss";
 
 const Message = ({ content, sender, userImage }) => {
