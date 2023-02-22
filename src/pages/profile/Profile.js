@@ -1,5 +1,4 @@
 import { Avatar, Button, Dropdown, Input } from "@nextui-org/react";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ManagePets from "../../components/manage-pets/ManagePets";
 import { countryList } from "../../constants";
@@ -11,7 +10,7 @@ const Profile = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [name, setName] = useState("Viraj Lakshitha");
   const [email, setEmail] = useState("viraj@drpawspaw.com");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("Sri Lanka");
 
   const handleDelete = () => {
     // TODO - Integrate with APIs
@@ -24,32 +23,6 @@ const Profile = () => {
   useEffect(() => {
     // Fetch the current user details from the APIs
     setCurrentUser(currentUserDetails);
-
-    // Fetch the current location from the browser plugins
-    navigator.geolocation.getCurrentPosition(
-      (arg) => {
-        axios
-          .get(
-            `http://api.geonames.org/countryCodeJSON?lat=${arg?.coords?.latitude}&lng=${arg?.coords?.longitude}&username=vitiya99`
-          )
-          .then((res) => {
-            if (countryList.includes(res?.data?.countryName)) {
-              setCountry(res?.data?.countryName);
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      },
-      (err) => {
-        console.error(err);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      }
-    );
   }, []);
 
   return (
@@ -107,6 +80,7 @@ const Profile = () => {
                   selectedKeys={country}
                   onSelectionChange={(e) => setCountry(e?.currentKey)}
                   className="profile-screen-details-inputs-dropdown"
+                  defaultSelectedKeys={"Sri Lanka"}
                 >
                   {countryList.map((country) => (
                     <Dropdown.Item key={country} value={country}>

@@ -8,9 +8,9 @@
 
       &-control {
         &-button {
-          min-width: 4em;
-          min-height: 4em;
-          border-radius: 50%;
+          min-width: 4em !important;
+          min-height: 4em !important;
+          border-radius: 50% !important;
         }
 
         &-icon {
@@ -22,8 +22,6 @@
         color: black;
         border: 1px solid;
       }
-
-      //   manage-screen-pets-item-input
 
       &-action {
         &-left {

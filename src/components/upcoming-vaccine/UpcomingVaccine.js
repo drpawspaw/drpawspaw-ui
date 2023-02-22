@@ -11,7 +11,7 @@ const UpcomingVaccine = ({ details }) => {
         <Text size={12}>{new Date(details?.date)?.toDateString()?.split(" ")[1] ?? "-"}</Text>
       </div>
       <div className="upcoming-vaccine-content w-100 ms-2 d-flex flex-column justify-content-center">
-        <Text size={14}>{truncate(details?.name, 17)}</Text>
+        <Text size={14}>{truncate(details?.name, 15)}</Text>
         <Text size={12}>{details?.petName}</Text>
       </div>
     </div>
