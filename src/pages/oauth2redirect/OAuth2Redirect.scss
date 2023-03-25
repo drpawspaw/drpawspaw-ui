@@ -1,0 +1,9 @@
+.oauth2redirect {
+  min-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+  max-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+
+  &-loading {
+    min-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+    max-height: calc(100vh - (var(--nextui--navbarHeight) + 1em)) !important;
+  }
+}

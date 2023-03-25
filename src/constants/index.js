@@ -1,3 +1,13 @@
+export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/"
+export const HTTP_GET = "get"
+export const HTTP_POST = "post"
+export const HTTP_PUT = "put"
+export const HTTP_DELETE = "delete"
+export const ACCESS_TOKEN = "access_token"
+export const REFRESH_TOKEN = "refresh_token"
+export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+
+// Data Constatns
 export const DOG_IMG_URL =
   "https://www.allpets.net/sites/default/files/styles/large/public/golden-retriever-dog-breed-info.jpg?itok=-GC_gRaR";
 export const CAT_IMAGE_URL =

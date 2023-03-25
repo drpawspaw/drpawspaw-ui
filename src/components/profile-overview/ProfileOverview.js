@@ -1,16 +1,24 @@
 import { Avatar, Button, Text } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 import UpcomingVaccine from "../../components/upcoming-vaccine/UpcomingVaccine";
-import { CAT_IMAGE_URL, DOG, DOG_IMG_URL } from "../../constants";
+import { ACCESS_TOKEN, CAT_IMAGE_URL, DOG, DOG_IMG_URL, REFRESH_TOKEN } from "../../constants";
 import { truncate } from "../../utils/CommonUtils";
 import "./ProfileOverview.scss";
 
 const ProfileOverview = ({ details }) => {
   const [vaccines, setVaccines] = useState([]);
+  const [isAuth, setIsAuth] = useContext(AppContext)
 
   useEffect(() => {
     setVaccines(details?.upcomingVaccines)
   }, [details]);
+
+  const handelLogout = () => {
+    localStorage.removeItem(ACCESS_TOKEN)
+    localStorage.removeItem(REFRESH_TOKEN)
+    setIsAuth(false)
+  }
 
   return (
     <div className="profile-overview h-100 d-flex flex-column align-items-center justify-content-between">
@@ -64,7 +72,7 @@ const ProfileOverview = ({ details }) => {
         <Button shadow onClick={e => window.location.href = "/profile"} color="primary" auto>
           Edit Profile
         </Button>
-        <Button shadow color="error" auto>
+        <Button shadow color="error" onClick={e => handelLogout()}>
           Logout
         </Button>
       </div>

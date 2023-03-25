@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 import ChatPlayground from "../../components/chat-playgound/ChatPlayground";
 import ProfileOverview from "../../components/profile-overview/ProfileOverview";
 import { currentUserDetails } from "../../mock-data/MockData";
 import "./Home.scss";
 
 const Home = () => {
-  const isAuth = true;
+  const [isAuth, setIsAuth] = useContext(AppContext)
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {

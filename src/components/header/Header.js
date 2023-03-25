@@ -1,11 +1,13 @@
 import { Button, Navbar, Text } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 import Login from "../login/Login";
 import "./Header.scss";
 
 const Header = () => {
   const [greeting, setGreeting] = useState("Good Morning");
   const [visibleLogin, setLoginVisible] = useState(false);
+  const [isAuth, setIsAuth] = useContext(AppContext)
 
   const handleVisible = () => {
     setLoginVisible(!visibleLogin);
@@ -28,6 +30,12 @@ const Header = () => {
     handleGreeting();
   }, []);
 
+  useEffect(() => {
+    if (window.location.pathname === "/login") {
+      setLoginVisible(true)
+    }
+  }, [window.location.pathname])
+
   return (
     <>
       <Navbar
@@ -36,7 +44,7 @@ const Header = () => {
         className="header d-flex align-items-center justify-content-between w-100"
       >
         <Text className="m-0 ">{greeting}</Text>
-        <Button onClick={handleVisible}>Login</Button>
+        <Button onClick={handleVisible} className={isAuth ? "d-none" : "d-flex"} >Login</Button>
       </Navbar>
       <Login visible={visibleLogin} handleClose={handleVisible} />
     </>
