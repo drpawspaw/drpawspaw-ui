@@ -6,6 +6,10 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 
+  &-text {
+    font-size: 12px !important;
+  }
+
   ::-webkit-scrollbar {
     display: none;
   }
