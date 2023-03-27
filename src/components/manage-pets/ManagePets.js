@@ -4,7 +4,14 @@ import {
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Dropdown, Input, Loading, Spacer } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Input,
+  Loading,
+  Spacer,
+} from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import {
   CAT,
@@ -14,7 +21,11 @@ import {
   DOG_BREEDS,
   DOG_IMG_URL,
 } from "../../constants";
-import { getPetsByOwnerId, getVaccines } from "../../utils/ApiUtils";
+import {
+  createPetProfile,
+  getPetsByOwnerId,
+  getVaccines,
+} from "../../utils/ApiUtils";
 import { capitalize, truncate } from "../../utils/CommonUtils";
 import "./ManagePets.scss";
 
@@ -70,18 +81,52 @@ const ManagePets = ({ userId }) => {
   };
 
   const handleCreatePetProfile = () => {
-    setPets([
-      {
-        name: "",
-        type: CAT,
-        breed: "",
-        birthDay: new Date().toISOString().split("T")[0],
-        lastVaccine: "",
-        lastVaccineDate: new Date().toISOString().split("T")[0],
-        notificationEnabled: false,
-      },
-      ...pets,
-    ]);
+    const newPet = {
+      name: "-",
+      birthdate: new Date().toISOString() + "+00:00",
+      lastVaccination: "-",
+      lastVaccinationDate: new Date().toISOString() + "+00:00",
+      bread: "-",
+      category: "cat",
+      isNotificationEnabled: false,
+      owner: userId,
+    };
+
+    /**
+     * TODO
+     * - Integrate APIs to create/delete/update pet profiles
+     * - Integrate APIs to update user profile
+     * - Integrate APIs to delete user profile -> Remove token and back to unauthorized || OR Remove it from UI
+     */
+
+    createPetProfile(newPet) 
+      .then((res) => {
+        if (res.status == 201) {
+          getPetsByOwnerId(userId)
+            .then((res) => {
+              setPets(res?.data ?? []);
+              setIsLoading(false);
+            })
+            .catch((err) => {
+              console.error(err);
+              if (
+                err?.response?.status === 403 &&
+                window.location.pathname !== "/login"
+              ) {
+                window.location.href = "/login";
+              }
+            });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        if (
+          err?.response?.status === 403 &&
+          window.location.pathname !== "/login"
+        ) {
+          window.location.href = "/login";
+        }
+      });
   };
 
   useEffect(() => {
@@ -89,7 +134,7 @@ const ManagePets = ({ userId }) => {
       getPetsByOwnerId(userId)
         .then((res) => {
           setPets(res?.data ?? []);
-          setIsLoading(false)
+          setIsLoading(false);
         })
         .catch((err) => {
           console.error(err);

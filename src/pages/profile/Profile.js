@@ -44,6 +44,7 @@ const Profile = () => {
         getProfile(username)
           .then((res) => {
             setCurrentUser(res?.data ?? initialValues);
+            setIsLoading(false)
           })
           .catch((err) => {
             console.error(err);

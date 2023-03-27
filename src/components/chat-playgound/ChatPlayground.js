@@ -63,6 +63,14 @@ const ChatPlayground = ({ userImage }) => {
           };
           messageHistoryCopy.push(suggestionMessage)
         }
+        if (res?.data?.treatments !== "") {
+          const treatments = {
+            timestamp: "",
+            content: res?.data?.treatments,
+            sender: BOT,
+          };
+          messageHistoryCopy.push(treatments)
+        }
         setMessageHistory([...messageHistoryCopy]);
         setIsBotTurn(false);
       })

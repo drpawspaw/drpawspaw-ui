@@ -78,3 +78,11 @@ export const getVaccines = () => {
     `static/vaccines`
   )
 }
+
+export const createPetProfile = (data) => {
+  return wrapper(
+    HTTP_POST,
+    "pets",
+    JSON.stringify(data)
+  )
+}
