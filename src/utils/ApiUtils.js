@@ -71,3 +71,10 @@ export const getUpComingVaccineByOwnerId = (id) => {
     `vaccines/?owner=${id}`
   )
 }
+
+export const getVaccines = () => {
+  return wrapper(
+    HTTP_GET,
+    `static/vaccines`
+  )
+}

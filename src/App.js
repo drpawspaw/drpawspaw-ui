@@ -20,10 +20,8 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (
-      localStorage.getItem(ACCESS_TOKEN) &&
-      localStorage.getItem(REFRESH_TOKEN)
-    ) {
+    if (localStorage.getItem(ACCESS_TOKEN) &&  localStorage.getItem(REFRESH_TOKEN)) {
+      console.log("Update isAuth");
       setIsAuth(true);
     }
   }, []); // Trigger when localstorage updated
@@ -42,7 +40,7 @@ const App = () => {
               <Route
                 path="/api/auth/authenticate"
                 element={<OAuth2Redirect />}
-              /> {/* Remove API part from both backend and frontend, for this auth redirect */}
+              />
               <Route
                 path="/unauthorized"
                 element={<Error error={UNAUTHORISED} />}

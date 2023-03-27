@@ -25,7 +25,6 @@ const ProfileOverview = ({ details, isProfLoading }) => {
           setPets(...[res?.data]);
         })
         .catch((err) => {
-          console.error(err);
           if (
             err?.response?.status === 403 &&
             window.location.pathname !== "/login"
@@ -55,7 +54,7 @@ const ProfileOverview = ({ details, isProfLoading }) => {
     }
   }, [details?.id]);
 
-  const handelLogout = () => {
+  const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
     setIsAuth(false);
@@ -139,7 +138,7 @@ const ProfileOverview = ({ details, isProfLoading }) => {
             >
               Edit Profile
             </Button>
-            <Button shadow color="error" onClick={(e) => handelLogout()}>
+            <Button shadow color="error" onClick={(e) => handleLogout()}>
               Logout
             </Button>
           </div>
