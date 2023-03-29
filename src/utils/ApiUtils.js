@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   ACCESS_TOKEN,
   API_BASE_URL,
+  HTTP_DELETE,
   HTTP_GET,
   HTTP_POST,
   REFRESH_TOKEN,
@@ -54,21 +55,21 @@ export const postChat = (message) => {
 export const getProfile = (email) => {
   return wrapper(
     HTTP_GET,
-    `users/?email=${email}`
+    `users?email=${email}`
   )
 }
 
 export const getPetsByOwnerId = (id) => {
   return wrapper(
     HTTP_GET,
-    `pets/?owner=${id}`
+    `pets?owner=${id}`
   )
 }
 
 export const getUpComingVaccineByOwnerId = (id) => {
   return wrapper(
     HTTP_GET,
-    `vaccines/?owner=${id}`
+    `vaccines?owner=${id}`
   )
 }
 
@@ -84,5 +85,12 @@ export const createPetProfile = (data) => {
     HTTP_POST,
     "pets",
     JSON.stringify(data)
+  )
+}
+
+export const deletePetProfile = (id) => {
+  return wrapper(
+    HTTP_DELETE,
+    `pets/${id}`
   )
 }

@@ -16,26 +16,22 @@ const initialValues = {
 
 const Profile = () => {
   const [currentUser, setCurrentUser] = useState(initialValues);
-  const [name, setName] = useState("Viraj Lakshitha");
-  const [email, setEmail] = useState("viraj@drpawspaw.com");
-  const [country, setCountry] = useState("Sri Lanka");
   const [isAuth, setIsAuth] = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleUpdate = (e, field) => {
-    setCurrentUser({ ...currentUser, ["field"]: e?.target?.value });
+    setCurrentUser({ ...currentUser, [field]: e?.target?.value });
   };
 
-  const handleDelete = () => {
-    // TODO - Integrate with APIs
+  const handleCancel = () => {
+    window.location.href = "/";
   };
 
   const handleSave = () => {
     // TODO - Integrate with APIs
   };
 
-  useEffect(() => {
-    // Fetch the current user details from the APIs
+  const handleSync = () => {
     if (isAuth) {
       const username = getEmailFromAccessToken(
         localStorage.getItem(ACCESS_TOKEN)
@@ -44,7 +40,7 @@ const Profile = () => {
         getProfile(username)
           .then((res) => {
             setCurrentUser(res?.data ?? initialValues);
-            setIsLoading(false)
+            setIsLoading(false);
           })
           .catch((err) => {
             console.error(err);
@@ -57,6 +53,11 @@ const Profile = () => {
           });
       }
     }
+  };
+
+  useEffect(() => {
+    // Fetch the current user details from the APIs
+    handleSync();
   }, [isAuth]);
 
   useEffect(() => {
@@ -115,7 +116,7 @@ const Profile = () => {
                       css={{ tt: "capitalize" }}
                       className="profile-screen-details-inputs-dropdown-button"
                     >
-                      {country}
+                      {currentUser?.country}
                     </Dropdown.Button>
                     <Dropdown.Menu
                       variant="flat"
@@ -124,7 +125,7 @@ const Profile = () => {
                       disallowEmptySelection
                       selectionMode="single"
                       selectedKeys={currentUser?.country}
-                      onSelectionChange={(e) => setCountry(e?.currentKey)}
+                      onSelectionChange={(e) => setCurrentUser(e, "country")}
                       className="profile-screen-details-inputs-dropdown"
                       defaultSelectedKeys={"Sri Lanka"}
                     >
@@ -147,16 +148,18 @@ const Profile = () => {
                 Save
               </Button>
               <Button
-                onClick={(e) => handleDelete()}
+                onClick={(e) => handleCancel()}
                 color="error"
                 className="ms-1"
               >
-                Delete
+                Cancel
               </Button>
             </div>
           </div>
           <div className="profile-screen-pets col-9 p-3">
-            <ManagePets userId={currentUser?._id ?? ""} />
+            <ManagePets
+              userId={currentUser?._id ?? ""}
+            />
           </div>
         </>
       )}

@@ -23,6 +23,7 @@ import {
 } from "../../constants";
 import {
   createPetProfile,
+  deletePetProfile,
   getPetsByOwnerId,
   getVaccines,
 } from "../../utils/ApiUtils";
@@ -34,25 +35,48 @@ const ManagePets = ({ userId }) => {
   const [vaccines, setVaccines] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getVaccines()
-      .then((res) => {
-        setVaccines(res?.data ?? []);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  const handleSync = () => {
+    if (userId !== "") {
+      getPetsByOwnerId(userId)
+        .then((res) => {
+          setPets(res?.data ?? []);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          if (
+            err?.response?.status === 403 &&
+            window.location.pathname !== "/login"
+          ) {
+            window.location.href = "/login";
+          }
+        });
+    }
+  };
 
   const handleDelete = (idx) => {
-    const filteredPets = [...pets].filter((_, index) => idx !== index);
-    setPets([...filteredPets]);
+    if (idx !== "") {
+      deletePetProfile(idx)
+        .then((res) => {
+          console.log(res);
+          handleSync();
+        })
+        .catch((err) => {
+          console.error(err);
+          if (
+            err?.response?.status === 403 &&
+            window.location.pathname !== "/login"
+          ) {
+            window.location.href = "/login";
+          }
+        });
+    }
   };
 
   const handleNotification = (idx) => {
     const filteredPets = [...pets].map((curr, index) => {
       if (idx === index) {
-        curr.notificationEnabled = !curr.notificationEnabled;
+        curr.isNotificationEnabled = !curr.isNotificationEnabled;
       }
       return curr;
     });
@@ -61,7 +85,6 @@ const ManagePets = ({ userId }) => {
 
   const handleOnChange = (e, idx, arg) => {
     const filteredPets = [...pets].map((curr, index) => {
-      console.log(e?.target?.value);
       if (idx === index) {
         curr[arg] = e?.target?.value ?? curr[arg];
       }
@@ -70,10 +93,22 @@ const ManagePets = ({ userId }) => {
     setPets([...filteredPets]);
   };
 
-  const handleOnSelect = (e, idx, arg) => {
+  const handleOnChangeDropdown = (e, idx, arg) => {
+    console.log(e?.currentKey);
     const filteredPets = [...pets].map((curr, index) => {
       if (idx === index) {
         curr[arg] = e?.currentKey ?? curr[arg];
+      }
+      return curr;
+    });
+    setPets([...filteredPets]);
+  };
+
+  const handleOnChangeVaccine = (e, idx, items) => {
+    const filteredPets = [...pets].map((curr, index) => {
+      if (idx === index) {
+        curr["lastVaccination"] =
+          items[e.currentKey]?.name ?? curr["lastVaccination"];
       }
       return curr;
     });
@@ -99,9 +134,9 @@ const ManagePets = ({ userId }) => {
      * - Integrate APIs to delete user profile -> Remove token and back to unauthorized || OR Remove it from UI
      */
 
-    createPetProfile(newPet) 
+    createPetProfile(newPet)
       .then((res) => {
-        if (res.status == 201) {
+        if (res.status === 201) {
           getPetsByOwnerId(userId)
             .then((res) => {
               setPets(res?.data ?? []);
@@ -130,23 +165,18 @@ const ManagePets = ({ userId }) => {
   };
 
   useEffect(() => {
-    if (userId !== "") {
-      getPetsByOwnerId(userId)
-        .then((res) => {
-          setPets(res?.data ?? []);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          if (
-            err?.response?.status === 403 &&
-            window.location.pathname !== "/login"
-          ) {
-            window.location.href = "/login";
-          }
-        });
-    }
+    handleSync();
   }, [userId]);
+
+  useEffect(() => {
+    getVaccines()
+      .then((res) => {
+        setVaccines(res?.data ?? []);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div className="manage-screen h-100">
@@ -182,7 +212,7 @@ const ManagePets = ({ userId }) => {
                     <Button
                       className="ms-1 manage-screen-pets-item-control-button"
                       color="error"
-                      onClick={(e) => handleDelete(idx)}
+                      onClick={(e) => handleDelete(pet?._id)}
                     >
                       <FontAwesomeIcon
                         className="manage-screen-pets-item-control-icon"
@@ -217,7 +247,7 @@ const ManagePets = ({ userId }) => {
                           ?.split("-")
                           ?.join("-")}
                         type="date"
-                        onChange={(e) => handleOnChange(e, idx, "birthDay")}
+                        onChange={(e) => handleOnChange(e, idx, "birthdate")}
                         color="primary"
                         className="manage-screen-pets-item-input w-100"
                       />
@@ -231,7 +261,7 @@ const ManagePets = ({ userId }) => {
                           ?.join("-")}
                         type="date"
                         onChange={(e) =>
-                          handleOnChange(e, idx, "lastVaccineDate")
+                          handleOnChange(e, idx, "lastVaccinationDate")
                         }
                         color="primary"
                         className="manage-screen-pets-item-input w-100"
@@ -257,7 +287,7 @@ const ManagePets = ({ userId }) => {
                           selectionMode="single"
                           selectedKeys={pet?.category}
                           onSelectionChange={(e) =>
-                            handleOnSelect(e, idx, "type")
+                            handleOnChangeDropdown(e, idx, "category")
                           }
                           className="profile-screen-details-inputs-dropdown"
                         >
@@ -285,7 +315,7 @@ const ManagePets = ({ userId }) => {
                           selectionMode="single"
                           selectedKeys={pet?.bread}
                           onSelectionChange={(e) =>
-                            handleOnSelect(e, idx, "breed")
+                            handleOnChangeDropdown(e, idx, "bread")
                           }
                           className="profile-screen-details-inputs-dropdown"
                         >
@@ -323,11 +353,13 @@ const ManagePets = ({ userId }) => {
                           disallowEmptySelection
                           selectionMode="single"
                           selectedKeys={pet?.lastVaccination}
-                          // onSelectionChange={(e) => setCountry(e?.currentKey)}
+                          onSelectionChange={(e) =>
+                            handleOnChangeVaccine(e, idx, vaccines)
+                          }
                           className="profile-screen-details-inputs-dropdown w-100"
                         >
-                          {vaccines?.map((vaccine) => (
-                            <Dropdown.Item key={vaccine} value={vaccine}>
+                          {vaccines?.map((vaccine, vid) => (
+                            <Dropdown.Item key={vid} value={vaccine?.name}>
                               {truncate(vaccine?.name, 35)}
                             </Dropdown.Item>
                           ))}
