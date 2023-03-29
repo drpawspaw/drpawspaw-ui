@@ -12,7 +12,6 @@ const OAuth2Redirect = () => {
         const accessToken = searchParam.get(ACCESS_TOKEN)
         const refreshToken = searchParam.get(REFRESH_TOKEN)
         if (accessToken && refreshToken) {
-            console.log(accessToken, refreshToken)
             localStorage.setItem(ACCESS_TOKEN, accessToken)
             localStorage.setItem(REFRESH_TOKEN, refreshToken)
             setIsLoading(false)

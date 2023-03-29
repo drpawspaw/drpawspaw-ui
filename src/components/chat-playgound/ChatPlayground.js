@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Input } from "@nextui-org/react";
-import { BOT, MESSAGE_LOADING, USER } from "../../constants";
+import { BOT, MESSAGE_LOADING, NOTIFY_STATE, USER } from "../../constants";
 import "./ChatPlayground.scss";
 import { postChat } from "../../utils/ApiUtils";
+import { notificationManager } from "../../utils/NotificationUtils"
 
 const ChatPlayground = ({ userImage }) => {
   const ERROR_MESSAGE = "Sorry for inconvience! Please try again later.";
@@ -76,6 +77,7 @@ const ChatPlayground = ({ userImage }) => {
       })
       .catch((err) => {
         console.error(err);
+        notificationManager("Unable to perform request", NOTIFY_STATE.error)
         messageHistoryCopy[messageHistoryCopy.length - 1].content =
           ERROR_MESSAGE;
         setMessageHistory([...messageHistoryCopy]);

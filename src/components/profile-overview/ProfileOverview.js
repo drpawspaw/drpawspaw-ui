@@ -7,10 +7,12 @@ import {
   CAT_IMAGE_URL,
   DOG,
   DOG_IMG_URL,
+  NOTIFY_STATE,
   REFRESH_TOKEN,
 } from "../../constants";
 import { getPetsByOwnerId, getUpComingVaccineByOwnerId } from "../../utils/ApiUtils";
 import { truncate } from "../../utils/CommonUtils";
+import { notificationManager } from "../../utils/NotificationUtils";
 import "./ProfileOverview.scss";
 
 const ProfileOverview = ({ details, isProfLoading }) => {
@@ -25,6 +27,8 @@ const ProfileOverview = ({ details, isProfLoading }) => {
           setPets(...[res?.data]);
         })
         .catch((err) => {
+          console.error(err)
+          notificationManager("Unable to fetch pets", NOTIFY_STATE.error)
           if (
             err?.response?.status === 403 &&
             window.location.pathname !== "/login"
@@ -44,6 +48,7 @@ const ProfileOverview = ({ details, isProfLoading }) => {
         })
         .catch((err) => {
           console.error(err);
+          notificationManager("Unable to fetch vaccine details", NOTIFY_STATE.error)
           if (
             err?.response?.status === 403 &&
             window.location.pathname !== "/login"

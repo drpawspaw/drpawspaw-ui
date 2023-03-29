@@ -2,10 +2,10 @@ import { Avatar, Button, Dropdown, Input, Loading } from "@nextui-org/react";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import ManagePets from "../../components/manage-pets/ManagePets";
-import { ACCESS_TOKEN, countryList } from "../../constants";
-import { currentUserDetails } from "../../mock-data/MockData";
+import { ACCESS_TOKEN, countryList, NOTIFY_STATE } from "../../constants";
 import { getEmailFromAccessToken, getProfile } from "../../utils/ApiUtils";
 import { truncate } from "../../utils/CommonUtils";
+import { notificationManager } from "../../utils/NotificationUtils";
 import "./Profile.scss";
 
 const initialValues = {
@@ -29,6 +29,7 @@ const Profile = () => {
 
   const handleSave = () => {
     // TODO - Integrate with APIs
+    notificationManager("Hii", NOTIFY_STATE.success)
   };
 
   const handleSync = () => {
@@ -44,6 +45,7 @@ const Profile = () => {
           })
           .catch((err) => {
             console.error(err);
+            notificationManager("Unable to fetch user profile", NOTIFY_STATE.error)
             if (
               err?.response?.status === 403 &&
               window.location.pathname !== "/login"
@@ -56,13 +58,8 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    // Fetch the current user details from the APIs
     handleSync();
   }, [isAuth]);
-
-  useEffect(() => {
-    console.log(currentUser.image_url);
-  }, [currentUser]);
 
   return (
     <div className="profile-screen d-flex m-2 h-100 w-100">

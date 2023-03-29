@@ -21,6 +21,13 @@ export const NOT_FOUND = "not-found";
 export const MESSAGE_LOADING = "message-loading-state";
 export const UNAUTHORISED = "unauthorized";
 export const SERVICES_NOT_AVAILABLE = "service-not-available";
+export const NOTIFY_STATE = {
+  info: "info",
+  success: "success",
+  warning: "warning",
+  error: "error",
+  default: "defualt"
+}
 
 /* Application Constants */
 export const DOG_IMG_URL =

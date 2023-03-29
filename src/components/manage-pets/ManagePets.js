@@ -20,6 +20,7 @@ import {
   DOG,
   DOG_BREEDS,
   DOG_IMG_URL,
+  NOTIFY_STATE,
 } from "../../constants";
 import {
   createPetProfile,
@@ -29,6 +30,7 @@ import {
 } from "../../utils/ApiUtils";
 import { capitalize, truncate } from "../../utils/CommonUtils";
 import "./ManagePets.scss";
+import { notificationManager } from "../../utils/NotificationUtils";
 
 const ManagePets = ({ userId }) => {
   const [pets, setPets] = useState([]);
@@ -58,11 +60,12 @@ const ManagePets = ({ userId }) => {
     if (idx !== "") {
       deletePetProfile(idx)
         .then((res) => {
-          console.log(res);
+          notificationManager("Pet profile deleted", NOTIFY_STATE.success)
           handleSync();
         })
         .catch((err) => {
           console.error(err);
+          notificationManager("Unable to delete pet profile", NOTIFY_STATE.error)
           if (
             err?.response?.status === 403 &&
             window.location.pathname !== "/login"
@@ -137,6 +140,7 @@ const ManagePets = ({ userId }) => {
     createPetProfile(newPet)
       .then((res) => {
         if (res.status === 201) {
+          notificationManager("New pet profile created", NOTIFY_STATE.success)
           getPetsByOwnerId(userId)
             .then((res) => {
               setPets(res?.data ?? []);
@@ -144,6 +148,7 @@ const ManagePets = ({ userId }) => {
             })
             .catch((err) => {
               console.error(err);
+              notificationManager("Unable to fetch pets", NOTIFY_STATE.error)
               if (
                 err?.response?.status === 403 &&
                 window.location.pathname !== "/login"
@@ -155,6 +160,7 @@ const ManagePets = ({ userId }) => {
       })
       .catch((err) => {
         console.error(err);
+        notificationManager("Unable to create new pet profile", NOTIFY_STATE.error)
         if (
           err?.response?.status === 403 &&
           window.location.pathname !== "/login"
@@ -174,6 +180,7 @@ const ManagePets = ({ userId }) => {
         setVaccines(res?.data ?? []);
       })
       .catch((err) => {
+        notificationManager("Unable to fetch vaccines", NOTIFY_STATE.error)
         console.error(err);
       });
   }, []);

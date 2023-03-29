@@ -2,12 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import ChatPlayground from "../../components/chat-playgound/ChatPlayground";
 import ProfileOverview from "../../components/profile-overview/ProfileOverview";
-import { ACCESS_TOKEN } from "../../constants";
+import { ACCESS_TOKEN, NOTIFY_STATE } from "../../constants";
 import { currentUserDetails } from "../../mock-data/MockData";
 import {
   getEmailFromAccessToken,
   getProfile,
 } from "../../utils/ApiUtils";
+import { notificationManager } from "../../utils/NotificationUtils";
 import "./Home.scss";
 
 const Home = () => {
@@ -47,6 +48,7 @@ const Home = () => {
           })
           .catch((err) => {
             console.error(err);
+            notificationManager("Unable to fetch user details", NOTIFY_STATE.error)
             if (
               err?.response?.status === 403 &&
               window.location.pathname !== "/login"
