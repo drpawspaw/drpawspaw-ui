@@ -3,14 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Input } from "@nextui-org/react";
-import { conversations } from "../../mock-data/MockData";
-import { BOT, MESSAGE_LOADING, USER } from "../../constants";
+import { BOT, MESSAGE_LOADING, NOTIFY_STATE, USER } from "../../constants";
 import "./ChatPlayground.scss";
+import { postChat } from "../../utils/ApiUtils";
+import { notificationManager } from "../../utils/NotificationUtils";
 
 const ChatPlayground = ({ userImage }) => {
+  const ERROR_MESSAGE = "Sorry for inconvience! Please try again later.";
   const [messageHistory, setMessageHistory] = useState([]);
   const [question, setQuestion] = useState("");
-  const [isBotTurn, setIsBotTurn] = useState(false)
+  const [isBotTurn, setIsBotTurn] = useState(false);
   const bottomRef = useRef(null);
 
   const handleTextOnChange = (e) => {
@@ -39,7 +41,7 @@ const ChatPlayground = ({ userImage }) => {
           sender: BOT,
         },
       ]);
-      setIsBotTurn(true)
+      setIsBotTurn(true);
       handleResetText();
     }
   };
@@ -48,25 +50,47 @@ const ChatPlayground = ({ userImage }) => {
     setQuestion("");
   };
 
-  const handleBotReply = () => {
-    setTimeout(() => {
-      const messageHistoryCopy = [...messageHistory]
-      messageHistoryCopy[messageHistoryCopy.length-1].content = "Message recieved from backend!"
-      setMessageHistory([...messageHistoryCopy])
-      setIsBotTurn(false)
-    }, 3000);
-  }
+  const handleBotReply = (userMessage) => {
+    const messageHistoryCopy = [...messageHistory];
+    postChat(userMessage)
+      .then((res) => {
+        messageHistoryCopy[messageHistoryCopy.length - 1].content =
+          res?.data?.response ?? ERROR_MESSAGE;
+        if (res?.data?.suggestions.length !== 0) {
+          const suggestionMessage = {
+            timestamp: "",
+            content:
+              "Here are the symptoms: " + res?.data?.suggestions.join(", "),
+            sender: BOT,
+          };
+          messageHistoryCopy.push(suggestionMessage);
+        }
+        if (res?.data?.treatments !== "") {
+          const treatments = {
+            timestamp: "",
+            content: res?.data?.treatments,
+            sender: BOT,
+          };
+          messageHistoryCopy.push(treatments);
+        }
+        setMessageHistory([...messageHistoryCopy]);
+        setIsBotTurn(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        notificationManager("Unable to perform request", NOTIFY_STATE.error);
+        messageHistoryCopy[messageHistoryCopy.length - 1].content =
+          ERROR_MESSAGE;
+        setMessageHistory([...messageHistoryCopy]);
+        setIsBotTurn(false);
+      });
+  };
 
   useEffect(() => {
     if (messageHistory.length !== 0 && isBotTurn) {
-      handleBotReply()
+      handleBotReply(messageHistory[messageHistory.length - 2].content);
     }
-  }, [messageHistory])
-
-  useEffect(() => {
-    // TODO : Fetch the details from the local storage or session storage later
-    setMessageHistory([...conversations]);
-  }, []);
+  }, [messageHistory]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -1,21 +1,46 @@
+/* Application Endpoint Management */
+// export const API_BASE_URL = "http://localhost:8000/api/v1/"
+// export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://localhost:8000/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+
+export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/"
+export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+
+/* Application Status */
+export const USER = "user";
+export const BOT = "bot";
+export const DOG = "dog";
+export const CAT = "cat";
+export const HTTP_GET = "get"
+export const HTTP_POST = "post"
+export const HTTP_PUT = "put"
+export const HTTP_DELETE = "delete"
+export const ACCESS_TOKEN = "access_token"
+export const REFRESH_TOKEN = "refresh_token"
+export const CURRENT_USER_PROFILE = "user_profile"
+export const NOT_FOUND = "not-found";
+export const MESSAGE_LOADING = "message-loading-state";
+export const UNAUTHORISED = "unauthorized";
+export const SERVICES_NOT_AVAILABLE = "service-not-available";
+export const NOTIFY_STATE = {
+  info: "info",
+  success: "success",
+  warning: "warning",
+  error: "error",
+  default: "defualt"
+}
+
+/* Application Constants */
 export const DOG_IMG_URL =
   "https://www.allpets.net/sites/default/files/styles/large/public/golden-retriever-dog-breed-info.jpg?itok=-GC_gRaR";
 export const CAT_IMAGE_URL =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1280px-Cat03.jpg";
 export const BOT_IMAGE_URL =
   "https://avatars.githubusercontent.com/u/110325009?s=200&v=4";
-export const MESSAGE_LOADING = "message-loading-state";
-export const UNAUTHORISED = "unauthorized";
+
 export const UNAUTHORISED_IMAGE_URL =
   "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/403.jpg?alt=media&token=40f22459-7015-4804-b844-63a3ef5a7a8e";
-export const NOT_FOUND = "not-found";
 export const NOT_FOUND_IMAGE_URL =
   "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/404.jpg?alt=media&token=8fd6dcf0-1b42-401d-9009-c31b3231ac3f";
-export const SERVICES_NOT_AVAILABLE = "service-not-available";
-export const USER = "user";
-export const BOT = "bot";
-export const DOG = "dog";
-export const CAT = "cat";
 export const countryList = [
   "Afghanistan",
   "Albania",

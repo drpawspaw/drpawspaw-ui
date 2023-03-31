@@ -1,18 +1,5 @@
 import { BOT, CAT, DOG, USER } from "../constants";
 
-export const conversations = [
-  {
-    timestamp: "",
-    content: "Message1",
-    sender: USER,
-  },
-  {
-    timestamp: "",
-    content: "Message2",
-    sender: BOT,
-  }
-];
-
 export const currentUserDetails = () => {
   return {
     name: "Jennifer Lopez",
