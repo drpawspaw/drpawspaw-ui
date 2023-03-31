@@ -12,7 +12,7 @@ export const notificationManager = (message, state) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
     case NOTIFY_STATE.success:
       return toast.success(message, {
@@ -23,7 +23,7 @@ export const notificationManager = (message, state) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
     case NOTIFY_STATE.warning:
       return toast.warn(message, {
@@ -34,7 +34,7 @@ export const notificationManager = (message, state) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
     case NOTIFY_STATE.error:
       return toast.error(message, {
@@ -45,7 +45,7 @@ export const notificationManager = (message, state) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
     default:
       return toast(message, {
@@ -56,7 +56,7 @@ export const notificationManager = (message, state) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "colored",
       });
   }
 };

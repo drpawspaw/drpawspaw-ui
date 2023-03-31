@@ -1,9 +1,9 @@
 /* Application Endpoint Management */
-export const API_BASE_URL = "http://localhost:8000/api/v1/"
-export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://localhost:8000/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+// export const API_BASE_URL = "http://localhost:8000/api/v1/"
+// export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://localhost:8000/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
 
-// export const API_BASE_URL = "http://api.drpawspaw.com/api/v1/"
-// export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/"
+export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
 
 /* Application Status */
 export const USER = "user";

@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Input, Loading } from "@nextui-org/react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../App";
 import ManagePets from "../../components/manage-pets/ManagePets";
 import { ACCESS_TOKEN, countryList, NOTIFY_STATE } from "../../constants";
@@ -18,18 +18,19 @@ const Profile = () => {
   const [currentUser, setCurrentUser] = useState(initialValues);
   const [isAuth, setIsAuth] = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
+  const managePetsRef = useRef(null);
 
   const handleUpdate = (e, field) => {
-    setCurrentUser({ ...currentUser, [field]: e?.target?.value });
+    // NOTE: No need to implement since, we are not allowed to change information grabbed from Google
+    return;
   };
 
   const handleCancel = () => {
     window.location.href = "/";
   };
 
-  const handleSave = () => {
-    // TODO - Integrate with APIs
-    notificationManager("Hii", NOTIFY_STATE.success)
+  const handleSave = (e) => {
+    managePetsRef.current.handleUpdateOnChange();
   };
 
   const handleSync = () => {
@@ -45,7 +46,10 @@ const Profile = () => {
           })
           .catch((err) => {
             console.error(err);
-            notificationManager("Unable to fetch user profile", NOTIFY_STATE.error)
+            notificationManager(
+              "Unable to fetch user profile",
+              NOTIFY_STATE.error
+            );
             if (
               err?.response?.status === 403 &&
               window.location.pathname !== "/login"
@@ -97,7 +101,7 @@ const Profile = () => {
                   <Input
                     bordered
                     labelPlaceholder="Email"
-                    initialValue="viraj@drpawspaw.com"
+                    initialValue={currentUser?.email}
                     value={currentUser?.email}
                     type="email"
                     onChange={(e) => handleUpdate(e, "email")}
@@ -136,27 +140,30 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="profile-screen-details-action d-flex justify-content-center">
-              <Button
-                onClick={(e) => handleSave()}
-                color="primary"
-                className="me-1"
-              >
-                Save
-              </Button>
-              <Button
-                onClick={(e) => handleCancel()}
-                color="error"
-                className="ms-1"
-              >
-                Cancel
-              </Button>
+            <div className="profile-screen-details-action d-flex flex-column justify-content-center">
+              <p className="profile-screen-details-action-text d-flex justify-content-center">
+                * Logging in with Google prevents you from editing your profile.
+              </p>
+              <div className="profile-screen-details-action d-flex justify-content-center">
+                <Button
+                  onClick={(e) => handleSave(e)}
+                  color="primary"
+                  className="me-1"
+                >
+                  Save
+                </Button>
+                <Button
+                  onClick={(e) => handleCancel()}
+                  color="error"
+                  className="ms-1"
+                >
+                  Cancel
+                </Button>
+              </div>
             </div>
           </div>
           <div className="profile-screen-pets col-9 p-3">
-            <ManagePets
-              userId={currentUser?._id ?? ""}
-            />
+            <ManagePets ref={managePetsRef} userId={currentUser?._id ?? ""} />
           </div>
         </>
       )}

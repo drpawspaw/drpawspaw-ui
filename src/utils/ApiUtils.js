@@ -5,22 +5,22 @@ import {
   HTTP_DELETE,
   HTTP_GET,
   HTTP_POST,
+  HTTP_PUT,
   REFRESH_TOKEN,
 } from "../constants";
 import jwt_decode from "jwt-decode";
 
 export const getEmailFromAccessToken = (token) => {
   const decodedHeader = jwt_decode(token);
-  return decodedHeader?.username ?? ""
-}
+  return decodedHeader?.username ?? "";
+};
 
 export const wrapper = (method, suffix, data) => {
   const token = getToken();
-  console.log("token", token);
 
   const defaultHeaders = {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   };
 
   return axios({
@@ -53,44 +53,29 @@ export const postChat = (message) => {
 };
 
 export const getProfile = (email) => {
-  return wrapper(
-    HTTP_GET,
-    `users?email=${email}`
-  )
-}
+  return wrapper(HTTP_GET, `users?email=${email}`);
+};
 
 export const getPetsByOwnerId = (id) => {
-  return wrapper(
-    HTTP_GET,
-    `pets?owner=${id}`
-  )
-}
+  return wrapper(HTTP_GET, `pets?owner=${id}`);
+};
 
 export const getUpComingVaccineByOwnerId = (id) => {
-  return wrapper(
-    HTTP_GET,
-    `vaccines?owner=${id}`
-  )
-}
+  return wrapper(HTTP_GET, `vaccines?owner=${id}`);
+};
 
 export const getVaccines = () => {
-  return wrapper(
-    HTTP_GET,
-    `static/vaccines`
-  )
-}
+  return wrapper(HTTP_GET, `static/vaccines`);
+};
 
 export const createPetProfile = (data) => {
-  return wrapper(
-    HTTP_POST,
-    "pets",
-    JSON.stringify(data)
-  )
-}
+  return wrapper(HTTP_POST, "pets", JSON.stringify(data));
+};
 
 export const deletePetProfile = (id) => {
-  return wrapper(
-    HTTP_DELETE,
-    `pets/${id}`
-  )
-}
+  return wrapper(HTTP_DELETE, `pets/${id}`);
+};
+
+export const updatePetProfile = (id, data) => {
+  return wrapper(HTTP_PUT, `pets/${id}`, JSON.stringify(data));
+};

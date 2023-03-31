@@ -14,7 +14,7 @@ import {
 import Profile from "./pages/profile/Profile";
 import OAuth2Redirect from "./pages/oauth2redirect/OAuth2Redirect";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 export const AppContext = React.createContext();
 
@@ -26,7 +26,6 @@ const App = () => {
       localStorage.getItem(ACCESS_TOKEN) &&
       localStorage.getItem(REFRESH_TOKEN)
     ) {
-      console.log("Update isAuth");
       setIsAuth(true);
     }
   }, []); // Trigger when localstorage updated
