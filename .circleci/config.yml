@@ -40,12 +40,15 @@ jobs:
       - run:
           name: Install Cypress and Run Automation UI Testing
           command: |
-            npm install cypress
-            npx cypress run --headless
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              npm install cypress
+              npx cypress run --headless
+            fi
+            
 
 workflows:
   version: 2
   drpawspaw_firebase:
     jobs:
-      # - build_deploy // Commented until the automation script fixed
+      - build_deploy
       - automation_test
