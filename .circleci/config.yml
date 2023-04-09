@@ -36,6 +36,7 @@ jobs:
     docker:
       - image: vitiya99/react-base:1.0.1
     steps:
+      - checkout
       - run:
           name: Install Cypress and Run Automation UI Testing
           command: |
