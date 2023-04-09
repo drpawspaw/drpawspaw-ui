@@ -32,6 +32,14 @@ jobs:
               yarn run firebase use drpawspaw-ui
               yarn run firebase deploy --token=$FIREBASE_TOKEN
             fi
+      - run:
+          name: Install Cypress and Run Automation UI Testing
+          command: |
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+              npm install cypress
+              npx cypress run --headless
+            fi
 
 workflows:
   version: 2
