@@ -40,10 +40,8 @@ jobs:
       - run:
           name: Install Cypress and Run Automation UI Testing
           command: |
-            if [ "$CIRCLE_BRANCH" = "develop" ]; then
-              npm install cypress
-              npx cypress run --headless
-            fi
+            npm install cypress
+            npx cypress run --headless
 
 workflows:
   version: 2
