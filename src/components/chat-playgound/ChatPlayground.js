@@ -10,7 +10,13 @@ import { notificationManager } from "../../utils/NotificationUtils";
 
 const ChatPlayground = ({ userImage }) => {
   const ERROR_MESSAGE = "Sorry for inconvience! Please try again later.";
-  const [messageHistory, setMessageHistory] = useState([]);
+  const [messageHistory, setMessageHistory] = useState([
+    {
+      timestamp: "",
+      content: "Hi! how can I help you?",
+      sender: BOT,
+    },
+  ]);
   const [question, setQuestion] = useState("");
   const [isBotTurn, setIsBotTurn] = useState(false);
   const bottomRef = useRef(null);
@@ -117,7 +123,7 @@ const ChatPlayground = ({ userImage }) => {
           onChange={(e) => handleTextOnChange(e)}
           onKeyDown={(e) => handleTextKeyDown(e)}
         />
-        <Button onClick={(e) => handleOnClick(e)}>
+        <Button id="chat-send-message" onClick={(e) => handleOnClick(e)}>
           <FontAwesomeIcon
             icon={faPaperPlane}
             className="chat-playground-input-send"

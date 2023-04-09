@@ -16,13 +16,13 @@ const Header = () => {
   const handleGreeting = () => {
     const hr = new Date().getHours();
     if (hr >= 0 && hr < 12) {
-      setGreeting("Good Morning!");
+      setGreeting("Good Morning! 👋");
     } else if (hr === 12) {
-      setGreeting("Good Noon!");
+      setGreeting("Good Noon! 👋");
     } else if (hr >= 12 && hr <= 17) {
-      setGreeting("Good Afternoon!");
+      setGreeting("Good Afternoon! 👋");
     } else {
-      setGreeting("Good Evening!");
+      setGreeting("Good Evening! 👋");
     }
   };
 
@@ -44,7 +44,7 @@ const Header = () => {
         className="header d-flex align-items-center justify-content-between w-100"
       >
         <Text className="m-0 ">{greeting}</Text>
-        <Button onClick={handleVisible} className={isAuth ? "d-none" : "d-flex"} >Login</Button>
+        <Button id="google-login" onClick={handleVisible} className={isAuth ? "d-none" : "d-flex"} >Login</Button>
       </Navbar>
       <Login visible={visibleLogin} handleClose={handleVisible} />
     </>

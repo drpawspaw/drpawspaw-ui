@@ -16,7 +16,7 @@ const Login = ({ visible, handleClose }) => {
             onClick={e => window.location.href = GOOGLE_AUTH_URL}
           className="login-modal-button">
             <i className="fab fa-google me-3" />
-            Sign in with Google
+            Continue with Google
           </Button>
         </Modal.Body>
         <Spacer />
