@@ -34,7 +34,7 @@ jobs:
             fi
   automation_test:
     docker:
-      - image: vitiya99/drpawspaw-ui:1.1.0
+      - image: vitiya99/react-base:1.0.1
     steps:
       - run:
           name: Install Cypress and Run Automation UI Testing
