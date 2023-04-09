@@ -49,5 +49,5 @@ workflows:
   version: 2
   drpawspaw_firebase:
     jobs:
-      - build_deploy
-
+      # - build_deploy // Commented until the automation script fixed
+      - automation_test
