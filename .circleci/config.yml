@@ -32,6 +32,12 @@ jobs:
               yarn run firebase use drpawspaw-ui
               yarn run firebase deploy --token=$FIREBASE_TOKEN
             fi
+      - run:
+          name: Install Cypress
+          command: npm install cypress
+      - run:
+          name: Run Cypress (In Headless)
+          command: npx cypress run --headless
 
 workflows:
   version: 2
