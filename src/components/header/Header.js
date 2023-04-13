@@ -35,9 +35,11 @@ const Header = () => {
 
   useEffect(() => {
     handleGreeting();
-    !sessionStorage?.getItem(SHOW_MESSAGE) &&
-      setVisibleWelcome(true) &&
-      sessionStorage.setItem(SHOW_MESSAGE, true);
+    const msgStatus = sessionStorage.getItem(SHOW_MESSAGE)
+    if (msgStatus === null || msgStatus === "" || msgStatus === "true") {
+      setVisibleWelcome(true)
+      sessionStorage.setItem(SHOW_MESSAGE, false)
+    }
   }, []);
 
   useEffect(() => {
