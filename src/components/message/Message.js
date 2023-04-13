@@ -15,7 +15,13 @@ const Message = ({ content, sender, userImage }) => {
     >
       <Avatar
         size="md"
-        src={isBot ? BOT_IMAGE_URL : userImage}
+        src={
+          isBot
+            ? BOT_IMAGE_URL
+            : userImage !== ""
+            ? userImage
+            : "https://design.freepikcompany.com/media/img/avatars/avatar-06.svg"
+        }
         color={isBot ? "primary" : "success"}
         bordered
       />
@@ -27,7 +33,10 @@ const Message = ({ content, sender, userImage }) => {
         }
       >
         {content === MESSAGE_LOADING ? (
-          <Loading className="chat-message-content-loading" type="points-opacity" />
+          <Loading
+            className="chat-message-content-loading"
+            type="points-opacity"
+          />
         ) : (
           content
         )}
