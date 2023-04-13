@@ -3,7 +3,7 @@ import { SHOW_MESSAGE } from "../../../src/constants";
 describe("https://drpawspaw.com - Homepage", () => {
   // Visit Page
   beforeEach(() => {
-    cy.visit("http://localhost:3000"); // Change this to http://localhost:3000 in local enviroment
+    cy.visit("https://drpawspaw-ui.web.app"); // Change this to http://localhost:3000 in local enviroment
     cy.url().then((value) => {
       sessionStorage.setItem(SHOW_MESSAGE, false) // Disable `Welcome Message` Screen
       cy.log("Current page uri: ", value);
