@@ -32,7 +32,7 @@ jobs:
               yarn run firebase use drpawspaw-ui
               yarn run firebase deploy --token=$FIREBASE_TOKEN
             fi
-  automation_test:
+  ui_automation:
     docker:
       - image: cypress/base:latest
     steps:
@@ -51,4 +51,6 @@ workflows:
   drpawspaw_firebase:
     jobs:
       - build_deploy
-      - automation_test
+      - ui_automation:
+          requires:
+            - build_deploy
