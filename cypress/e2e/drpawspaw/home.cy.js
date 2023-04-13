@@ -1,8 +1,11 @@
+import { SHOW_MESSAGE } from "../../../src/constants";
+
 describe("https://drpawspaw.com - Homepage", () => {
   // Visit Page
   beforeEach(() => {
-    cy.visit("https://drpawspaw-ui.web.app/"); // Change this to http://localhost:3000 in local enviroment
+    cy.visit("http://localhost:3000"); // Change this to http://localhost:3000 in local enviroment
     cy.url().then((value) => {
+      sessionStorage.setItem(SHOW_MESSAGE, false) // Disable `Welcome Message` Screen
       cy.log("Current page uri: ", value);
     });
   });
@@ -27,7 +30,7 @@ describe("https://drpawspaw.com - Homepage", () => {
     cy.log("Check disease prediction functionality - SUGGESTION STATE");
     cy.get("input").type("My dog has been vomiting and has diarrhoea ?");
     cy.get("button#chat-send-message").click();
-    cy.wait(60000).then(() => {
+    cy.wait(20000).then(() => {
       cy.contains(
         "According to the information that has been provided to us, we are unable to identify the specific disease; however, it may be Babesiosis, Distempter. It would be helpful to perform a more accurate prediction if you could provide more symptoms out of the following symptoms."
       ).should("exist");
@@ -41,7 +44,7 @@ describe("https://drpawspaw.com - Homepage", () => {
     cy.log("Check disease prediction functionality - PREDICTION STATE");
     cy.get("input").type("My dog has high fever and running nose ?");
     cy.get("button#chat-send-message").click();
-    cy.wait(60000).then(() => {
+    cy.wait(20000).then(() => {
       cy.contains("We are able to predict the disease as Pneumonia").should(
         "exist"
       );
@@ -57,7 +60,7 @@ describe("https://drpawspaw.com - Homepage", () => {
       "My dog has bad fever and diarrhoea and running nose ?"
     );
     cy.get("button#chat-send-message").click();
-    cy.wait(60000).then(() => {
+    cy.wait(20000).then(() => {
       cy.contains(
         "Based on the information that we have, we are unable to determine what disease it is because we do not have the necessary expertise."
       ).should("exist");
