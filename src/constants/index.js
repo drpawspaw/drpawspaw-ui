@@ -16,6 +16,7 @@ export const HTTP_PUT = "put"
 export const HTTP_DELETE = "delete"
 export const ACCESS_TOKEN = "access_token"
 export const REFRESH_TOKEN = "refresh_token"
+export const SHOW_MESSAGE = "show_message"
 export const CURRENT_USER_PROFILE = "user_profile"
 export const NOT_FOUND = "not-found";
 export const MESSAGE_LOADING = "message-loading-state";
