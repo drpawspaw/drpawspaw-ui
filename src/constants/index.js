@@ -6,6 +6,7 @@ export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/"
 export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
 
 /* Application Status */
+export const NON_DESKTOP_MEDIA_QUERY = "(max-width: 992px)";
 export const USER = "user";
 export const BOT = "bot";
 export const DOG = "dog";

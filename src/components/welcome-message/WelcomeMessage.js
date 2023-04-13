@@ -5,32 +5,42 @@ import "./WelcomeMessage.scss";
 const WelcomeMessage = ({ visible, handleClose }) => {
   return (
     <div className="message-modal">
-      <Modal width="50%" blur open={visible} onClose={handleClose}>
+      <Modal width="60%" blur open={visible} onClose={handleClose}>
         <Spacer />
         <Modal.Header>
           <Text h5>Welcome to DRPAWSPAW 🐶</Text>
         </Modal.Header>
         <Modal.Body>
-          <Text className="message-modal-title" h6>What is DRPAWSPAW?</Text>
-          <Text>
-            The effective prediction of animal diseases is a crucial aspect of
-            animal healthcare, especially in light of the inflation and high
-            cost of veterinary charges. Despite the significance of animal
-            disease prediction, there is currently no dependable application for
-            house-hold animal pets owners to predict diseases. To address this
-            gap, this study proposes a natural language processing approach to
-            predicting animal diseases based on their symptoms. Specifically,
-            the proposed approach involves named entity disambiguation using
-            data in ontology knowledge base. The ontology knowledge base is used
-            to identify and classify animal diseases based on their symptoms,
-            thereby enabling more accurate predictions. The results of the study
-            demonstrate the effectiveness of the proposed approach, highlighting
-            its potential to provide valuable support for animal healthcare
-            professionals and pet owners. Ultimately, the findings of this study
-            have significant implications for improving animal healthcare and
-            enhancing the well-being of animal populations.
+          <Text className="message-modal-title" h6>
+            What is DRPAWSPAW?
           </Text>
-          <Text className="message-modal-title" h6>How it works?</Text>
+          <Text>
+            Taking care of your beloved pets is important and predicting animal
+            diseases is a crucial part of their healthcare. However, veterinary
+            charges can be expensive and there is currently no reliable
+            application available for pet owners to predict diseases in their
+            pets.
+            <br />
+            <br />
+            To address this issue, we propose a new way to predict animal
+            diseases based on their symptoms, using natural language processing
+            techniques. We use an ontology knowledge base to identify and
+            classify animal diseases, making our predictions more accurate.
+            <br />
+            <br />
+            Our approach has shown great effectiveness in predicting animal
+            diseases, which can be extremely valuable for animal healthcare
+            professionals and pet owners alike. With our method, we hope to
+            improve animal healthcare and enhance the well-being of animal
+            populations.
+            <br />
+            <br />
+            Thank you for choosing our platform to help you take better care of
+            your pets!
+          </Text>
+          <Text className="message-modal-title" h6>
+            How it works?
+          </Text>
           <div className="d-flex w-100 justify-content-center">
             <iframe
               width="560"
