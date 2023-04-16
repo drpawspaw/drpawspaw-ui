@@ -1,5 +1,5 @@
 import { Avatar, Loading, Text } from "@nextui-org/react";
-import { BOT, BOT_IMAGE_URL, MESSAGE_LOADING } from "../../constants";
+import { APPLICATION_LOGO, BOT, MESSAGE_LOADING } from "../../constants";
 import "./Message.scss";
 
 const Message = ({ content, sender, userImage }) => {
@@ -17,7 +17,7 @@ const Message = ({ content, sender, userImage }) => {
         size="md"
         src={
           isBot
-            ? BOT_IMAGE_URL
+            ? APPLICATION_LOGO
             : userImage !== ""
             ? userImage
             : "https://design.freepikcompany.com/media/img/avatars/avatar-06.svg"

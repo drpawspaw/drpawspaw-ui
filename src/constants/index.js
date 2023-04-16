@@ -2,8 +2,9 @@
 // export const API_BASE_URL = "http://localhost:8000/api/v1/"
 // export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=http://localhost:8000/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
 
-export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/"
-export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com"
+export const API_BASE_URL = "https://api.drpawspaw.com/api/v1/";
+export const GOOGLE_AUTH_URL =
+  "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/userinfo.email%20https%3A//www.googleapis.com/auth/userinfo.profile&access_type=offline&include_granted_scopes=true&response_type=code&redirect_uri=https://api.drpawspaw.com/api/auth/google/callback&client_id=289867524343-18mmo5g12ln6a413sik7207dbsje6fj8.apps.googleusercontent.com";
 
 /* Application Status */
 export const NON_DESKTOP_MEDIA_QUERY = "(max-width: 992px)";
@@ -11,14 +12,14 @@ export const USER = "user";
 export const BOT = "bot";
 export const DOG = "dog";
 export const CAT = "cat";
-export const HTTP_GET = "get"
-export const HTTP_POST = "post"
-export const HTTP_PUT = "put"
-export const HTTP_DELETE = "delete"
-export const ACCESS_TOKEN = "access_token"
-export const REFRESH_TOKEN = "refresh_token"
-export const SHOW_MESSAGE = "show_message"
-export const CURRENT_USER_PROFILE = "user_profile"
+export const HTTP_GET = "get";
+export const HTTP_POST = "post";
+export const HTTP_PUT = "put";
+export const HTTP_DELETE = "delete";
+export const ACCESS_TOKEN = "access_token";
+export const REFRESH_TOKEN = "refresh_token";
+export const SHOW_MESSAGE = "show_message";
+export const CURRENT_USER_PROFILE = "user_profile";
 export const NOT_FOUND = "not-found";
 export const MESSAGE_LOADING = "message-loading-state";
 export const UNAUTHORISED = "unauthorized";
@@ -28,17 +29,20 @@ export const NOTIFY_STATE = {
   success: "success",
   warning: "warning",
   error: "error",
-  default: "defualt"
-}
+  default: "defualt",
+};
 
 /* Application Constants */
-export const DOG_IMG_URL =
-  "https://www.allpets.net/sites/default/files/styles/large/public/golden-retriever-dog-breed-info.jpg?itok=-GC_gRaR";
-export const CAT_IMAGE_URL =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1280px-Cat03.jpg";
-export const BOT_IMAGE_URL =
-  "https://avatars.githubusercontent.com/u/110325009?s=200&v=4";
-
+export const DOG_IMG_1_URL =
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/dog-image-1.png?alt=media&token=2edc6964-7d4b-4b09-994c-d0bda7ba2988";
+export const DOG_IMG_2_URL =
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/dog-image-2.png?alt=media&token=04928377-64cc-4ae5-be83-4b6d3aa4dc0a";
+export const CAT_IMG_1_URL =
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/cat-image-1.png?alt=media&token=8c3bec04-7ebf-425d-845a-06a1b039cb17";
+export const CAT_IMG_2_URL =
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/cat-image-2.png?alt=media&token=6b2bd57a-6253-4308-a0fa-d8cbcb14772f";
+export const APPLICATION_LOGO =
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/drpawspaw-512.png?alt=media&token=a8d5aaf5-08dc-449f-ba67-a736c5a545e1";
 export const UNAUTHORISED_IMAGE_URL =
   "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/403.jpg?alt=media&token=40f22459-7015-4804-b844-63a3ef5a7a8e";
 export const NOT_FOUND_IMAGE_URL =

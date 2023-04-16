@@ -1,3 +1,10 @@
+import {
+  CAT_IMG_1_URL,
+  CAT_IMG_2_URL,
+  DOG_IMG_1_URL,
+  DOG_IMG_2_URL,
+} from "../constants";
+
 export const truncate = (keyword, limit) => {
   if (keyword?.length <= limit) {
     return keyword;
@@ -69,4 +76,16 @@ export const isDateBefore = (date1, date2) => {
   const timestamp2 = new Date(date2).getTime();
 
   return timestamp1 < timestamp2;
+};
+
+export const getDogImage = () => {
+  const list = [DOG_IMG_1_URL, DOG_IMG_2_URL];
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+};
+
+export const getCatImage = () => {
+  const list = [CAT_IMG_1_URL, CAT_IMG_2_URL];
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
 };

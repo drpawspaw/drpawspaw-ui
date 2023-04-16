@@ -4,14 +4,12 @@ import { AppContext } from "../../App";
 import UpcomingVaccine from "../../components/upcoming-vaccine/UpcomingVaccine";
 import {
   ACCESS_TOKEN,
-  CAT_IMAGE_URL,
   DOG,
-  DOG_IMG_URL,
   NOTIFY_STATE,
   REFRESH_TOKEN,
 } from "../../constants";
 import { getPetsByOwnerId, getUpComingVaccineByOwnerId } from "../../utils/ApiUtils";
-import { truncate } from "../../utils/CommonUtils";
+import { getCatImage, getDogImage, truncate } from "../../utils/CommonUtils";
 import { notificationManager } from "../../utils/NotificationUtils";
 import "./ProfileOverview.scss";
 
@@ -99,7 +97,7 @@ const ProfileOverview = ({ details, isProfLoading }) => {
                 {pets?.map((pet, idx) => (
                   <Avatar
                     key={idx}
-                    src={pet?.category === DOG ? DOG_IMG_URL : CAT_IMAGE_URL}
+                    src={pet?.category === DOG ? getDogImage() : getCatImage()}
                     bordered
                     css={{ size: "$18" }}
                   />

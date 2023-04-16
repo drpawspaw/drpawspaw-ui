@@ -21,10 +21,8 @@ import React, {
 import {
   CAT,
   CAT_BREEDS,
-  CAT_IMAGE_URL,
   DOG,
   DOG_BREEDS,
-  DOG_IMG_URL,
   NOTIFY_STATE,
 } from "../../constants";
 import {
@@ -37,6 +35,8 @@ import {
   capitalize,
   convertDateFormat,
   deepCompare,
+  getCatImage,
+  getDogImage,
   truncate,
 } from "../../utils/CommonUtils";
 import "./ManagePets.scss";
@@ -238,7 +238,7 @@ const ManagePets = forwardRef(({ userId }, ref) => {
                     <div className="d-flex justify-content-between manage-screen-pets-item-control align-items-center">
                       <Avatar
                         src={
-                          pet?.category === CAT ? CAT_IMAGE_URL : DOG_IMG_URL
+                          pet?.category === CAT ? getCatImage() : getDogImage()
                         }
                         css={{ size: "$20" }}
                         name={pet?.name}
