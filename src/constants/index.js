@@ -42,7 +42,7 @@ export const CAT_IMG_1_URL =
 export const CAT_IMG_2_URL =
   "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/cat-image-2.png?alt=media&token=6b2bd57a-6253-4308-a0fa-d8cbcb14772f";
 export const APPLICATION_LOGO =
-  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/drpawspaw-512.png?alt=media&token=a8d5aaf5-08dc-449f-ba67-a736c5a545e1";
+  "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/drpawspaw-logo.png?alt=media&token=1ca37884-c9ff-4686-b936-49fe4c2b3298";
 export const UNAUTHORISED_IMAGE_URL =
   "https://firebasestorage.googleapis.com/v0/b/drpawspaw-ui.appspot.com/o/403.jpg?alt=media&token=40f22459-7015-4804-b844-63a3ef5a7a8e";
 export const NOT_FOUND_IMAGE_URL =

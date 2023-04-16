@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import Login from "../login/Login";
 import "./Header.scss";
 import WelcomeMessage from "../welcome-message/WelcomeMessage";
-import { SHOW_MESSAGE } from "../../constants";
+import { APPLICATION_LOGO, SHOW_MESSAGE } from "../../constants";
 
 const Header = () => {
   const [greeting, setGreeting] = useState("Good Morning");
@@ -57,7 +57,7 @@ const Header = () => {
       >
         <div className="d-flex justify-content-center align-items-center">
           <img
-            src={`${window.location.href}drpawspaw-logo.png`}
+            src={APPLICATION_LOGO}
             width={50}
             alt="drpawspaw-logo"
           />
