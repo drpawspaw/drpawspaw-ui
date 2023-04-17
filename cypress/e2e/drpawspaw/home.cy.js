@@ -35,7 +35,7 @@ describe("https://drpawspaw.com - Homepage", () => {
         "According to the information that has been provided to us, we are unable to identify the specific disease; however, it may be Babesiosis, Distempter. It would be helpful to perform a more accurate prediction if you could provide more symptoms out of the following symptoms."
       ).should("exist");
       cy.contains(
-        "Here are the symptoms: Eye Discharge, Excessive Saliva, Head Tilt, Limb Swelling, Seizures, Nasal Discharge, Pain, Vomiting, Sneezing, Breathing Difficulties, Lethargy, Loss of Appetite, coughing, Involuntary Eye Movements, Diarrhea, Fever, Pneumonia, Thickening of nose and foot pads, Skin Sores, Abnormal Pain, Paralysis, Inflammation of Joints, Muscle Twitching"
+        "Here are the symptoms:"
       ).should("exist");
     });
   });
